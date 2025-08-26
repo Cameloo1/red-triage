@@ -1,0 +1,63 @@
+title: Suspicious Network Connections
+id: 12345678-1234-1234-1234-123456789abc
+status: test
+description: Detects suspicious network connections that may indicate malicious activity
+references:
+    - https://attack.mitre.org/techniques/T1071/
+    - https://attack.mitre.org/techniques/T1090/
+author: RedTriage Team
+date: 2025-08-25
+modified: 2025-08-25
+tags:
+    - attack.command_and_control
+    - attack.exfiltration
+    - attack.t1071
+    - attack.t1090
+logsource:
+    category: network
+    product: redtriage
+detection:
+    selection:
+        # Suspicious remote IP addresses
+        remote_address:
+            - "0.0.0.0"
+            - "127.0.0.1"
+            - "255.255.255.255"
+        # Suspicious ports commonly used by malware
+        remote_port:
+            - 22      # SSH
+            - 23      # Telnet
+            - 80      # HTTP
+            - 443     # HTTPS
+            - 8080    # HTTP Alternate
+            - 8443    # HTTPS Alternate
+            - 4444    # Metasploit
+            - 6667    # IRC
+            - 8081    # HTTP Alternate
+            - 8888    # HTTP Alternate
+        # Suspicious protocols
+        protocol:
+            - "TCP"
+            - "UDP"
+    filter:
+        # Exclude known legitimate processes
+        process:
+            - "chrome.exe"
+            - "firefox.exe"
+            - "edge.exe"
+            - "iexplore.exe"
+            - "svchost.exe"
+            - "lsass.exe"
+            - "winlogon.exe"
+    condition: selection and not filter
+falsepositives:
+    - Legitimate remote administration tools
+    - VPN connections
+    - Cloud services
+level: medium
+fields:
+    - local_address
+    - remote_address
+    - protocol
+    - process
+    - timestamp

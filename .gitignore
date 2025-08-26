@@ -1,0 +1,83 @@
+# RedTriage .gitignore
+# This file ensures that build outputs, test results, and other generated files
+# are not committed to the repository.
+
+# Build outputs
+/build/
+*.exe
+*.dll
+*.so
+*.dylib
+*.a
+*.o
+
+# Test outputs and reports
+/redtriage-reports/
+/redtriage-output/
+/test-results/
+/comprehensive-test-results/
+
+# Logs
+/logs/
+*.log
+*.log.*
+
+# Configuration files with sensitive data
+.redtriage_history
+*.env
+.env.local
+.env.production
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Go specific
+*.test
+*.out
+go.work
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Collection artifacts (large files)
+/artifacts/
+/collections/
+/triage-bundles/
+
+# Archived development files
+/old-stuff/
+
+# User-specific files
+user-config.yml
+local-config.yml
+
+# Backup files
+*.old
+*.orig
+*.rej
+
+# Package files
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Documentation builds
+/docs/build/
+/docs/_build/

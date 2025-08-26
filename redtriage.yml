@@ -1,0 +1,92 @@
+# RedTriage Configuration File
+# This file contains all configuration options for RedTriage
+
+# General settings
+log_level: "info"
+log_format: "text"
+default_timeout: "20m"
+max_artifact_size: "100MB"
+max_log_size: "200MB"
+max_log_age: "48h"
+
+# Collection settings
+detection_timeout: "5m"
+min_severity: "medium"
+compression_level: 6
+
+# Security settings
+checksum_algorithm: "sha256"
+redaction_enabled: true
+allow_network: false
+
+# Platform-specific settings
+platform: "windows"
+
+# Output settings
+default_output_dir: "./redtriage-output"
+reports_dir: "./redtriage-reports"
+report_formats: ["md", "html", "json"]
+
+# Rule settings
+sigma_rules_path: ""
+custom_rules_path: ""
+
+# Session settings
+save_history: true
+history_file: ".redtriage_history"
+session_log_path: "./logs"
+
+# Color settings
+color_enabled: true
+color_mode: "auto"
+
+# Artifact-specific settings
+artifacts:
+  processes:
+    enabled: true
+    timeout: "5m"
+    max_size: "50MB"
+  services:
+    enabled: true
+    timeout: "2m"
+    max_size: "10MB"
+  network:
+    enabled: true
+    timeout: "1m"
+    max_size: "5MB"
+  logs:
+    enabled: true
+    timeout: "10m"
+    max_size: "200MB"
+  files:
+    enabled: true
+    timeout: "15m"
+    max_size: "500MB"
+  registry:
+    enabled: true
+    timeout: "3m"
+    max_size: "25MB"
+  memory:
+    enabled: false
+    timeout: "10m"
+    max_size: "1GB"
+  volatility:
+    enabled: false
+    timeout: "30m"
+    max_size: "2GB"
+  timeline:
+    enabled: true
+    timeout: "5m"
+    max_size: "100MB"
+  system:
+    enabled: true
+    timeout: "2m"
+    max_size: "10MB"
+  users:
+    enabled: true
+    timeout: "1m"
+    max_size: "5MB"
+  groups:
+    enabled: true
+    timeout: "1m"
+    max_size: "5MB"

@@ -1,0 +1,101 @@
+title: Suspicious Process Behavior
+id: 87654321-4321-4321-4321-cba987654321
+status: test
+description: Detects suspicious process behavior that may indicate malicious activity
+references:
+    - https://attack.mitre.org/techniques/T1055/
+    - https://attack.mitre.org/techniques/T1059/
+    - https://attack.mitre.org/techniques/T1064/
+author: RedTriage Team
+date: 2025-08-25
+modified: 2025-08-25
+tags:
+    - attack.process_injection
+    - attack.defense_evasion
+    - attack.execution
+    - attack.t1055
+    - attack.t1059
+    - attack.t1064
+logsource:
+    category: process
+    product: redtriage
+detection:
+    selection:
+        # High CPU usage processes
+        cpu_percent: "> 80"
+        # High memory usage processes
+        memory_mb: "> 1000"
+        # Processes with suspicious names
+        name:
+            - "*.tmp"
+            - "*.exe.tmp"
+            - "svchost*.exe"
+            - "lsass*.exe"
+            - "winlogon*.exe"
+            - "csrss*.exe"
+            - "wininit*.exe"
+            - "services*.exe"
+            - "spoolsv*.exe"
+            - "lsm*.exe"
+            - "winlogon*.exe"
+            - "csrss*.exe"
+            - "wininit*.exe"
+            - "services*.exe"
+            - "spoolsv*.exe"
+            - "lsm*.exe"
+        # Processes running from suspicious locations
+        path:
+            - "C:\\temp\\*"
+            - "C:\\windows\\temp\\*"
+            - "C:\\users\\*\\appdata\\local\\temp\\*"
+            - "C:\\users\\*\\appdata\\roaming\\*"
+            - "C:\\users\\*\\downloads\\*"
+            - "C:\\users\\*\\desktop\\*"
+        # Processes with suspicious privileges
+        privileges:
+            - "SeDebugPrivilege"
+            - "SeTcbPrivilege"
+            - "SeSecurityPrivilege"
+            - "SeBackupPrivilege"
+            - "SeRestorePrivilege"
+            - "SeSystemProfilePrivilege"
+            - "SeLoadDriverPrivilege"
+            - "SeProfileSingleProcessPrivilege"
+    filter:
+        # Exclude known legitimate processes
+        name:
+            - "chrome.exe"
+            - "firefox.exe"
+            - "edge.exe"
+            - "iexplore.exe"
+            - "svchost.exe"
+            - "lsass.exe"
+            - "winlogon.exe"
+            - "csrss.exe"
+            - "wininit.exe"
+            - "services.exe"
+            - "spoolsv.exe"
+            - "lsm.exe"
+        # Exclude processes from legitimate paths
+        path:
+            - "C:\\Program Files\\*"
+            - "C:\\Program Files (x86)\\*"
+            - "C:\\Windows\\System32\\*"
+            - "C:\\Windows\\SysWOW64\\*"
+    condition: selection and not filter
+falsepositives:
+    - Legitimate system administration tools
+    - Development and debugging tools
+    - Security software
+    - High-performance applications
+level: high
+fields:
+    - name
+    - pid
+    - cpu_percent
+    - memory_mb
+    - user
+    - start_time
+    - path
+    - privileges
+    - timestamp
