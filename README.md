@@ -56,7 +56,7 @@ RedTriage follows a modular architecture designed for extensibility and reliabil
 ### Quick Start
 ```bash
 # Clone the repository
-git clone https://github.com/redtriage/redtriage.git
+git clone https://github.com/red-triage/redtriage.git
 cd redtriage
 
 # Build all CLI versions
