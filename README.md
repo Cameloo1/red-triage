@@ -1,10 +1,10 @@
 # RedTriage - Professional Incident Response Triage Tool
 
-**Designed to work as NetFlow by Cisco** - A comprehensive, static, cross-platform incident response triage CLI tool that collects volatile and persistent artifacts, runs local detections, and packages everything into a signed archive with a manifest and concise report.
+A comprehensive, static, cross-platform incident response triage CLI tool that collects volatile and persistent artifacts, runs local detections, and packages everything into a signed archive with a manifest and concise report.
 
 ## Overview
 
-RedTriage is a professional-grade incident response tool that provides comprehensive system triage capabilities similar to Cisco NetFlow's network flow analysis, but focused on static endpoint forensics and incident response. Just as NetFlow captures and analyzes network traffic flows, RedTriage captures and analyzes system artifacts, processes, and forensic data to provide complete visibility into system state during incident response scenarios.
+RedTriage is a professional-grade incident response tool that provides comprehensive system triage analysis, but focused on static endpoint forensics and incident response. JRedTriage captures and analyzes system artifacts, processes, and forensic data to provide complete visibility into system state during incident response scenarios.
 
 ## Key Features
 
@@ -38,8 +38,8 @@ RedTriage follows a modular architecture designed for extensibility and reliabil
 │   Collection    │    │   Detection     │    │   Packaging     │
 │   Engine        │───▶│   Engine        │───▶│   & Reporting   │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
-         │                       │                       │
-         ▼                       ▼                       ▼
+         │  ▲                   │   ▲                     │
+         ▼  │                   ▼   │                     ▼
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
 │   Platform      │    │   Rule Engine   │    │   Output       │
 │   Collectors    │    │   (Sigma)       │    │   Management   │
